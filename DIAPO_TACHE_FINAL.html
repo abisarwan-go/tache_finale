@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PyMart — Tâche finale</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a222c;
+      --text: #e8eef4;
+      --muted: #9aa8b6;
+      --accent: #3d9cf0;
+      --accent-2: #5ecf9a;
+      --warn: #f0b35c;
+      --line: #2a3644;
+      --code: #0b1016;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+
+    .deck {
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      height: 100%;
+      padding: 3.2rem 4.5rem 5rem;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        radial-gradient(ellipse at top right, #1b2a3d 0%, transparent 45%),
+        radial-gradient(ellipse at bottom left, #14231c 0%, transparent 40%),
+        var(--bg);
+    }
+
+    .slide.active { display: flex; }
+
+    .slide h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .slide h2 {
+      font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      margin-bottom: 1.2rem;
+      color: var(--accent);
+      font-weight: 650;
+    }
+
+    .slide h3 {
+      font-size: 1.15rem;
+      color: var(--accent-2);
+      margin: 1rem 0 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin-bottom: 1.5rem;
+    }
+
+    ul, ol {
+      margin-left: 1.2rem;
+      line-height: 1.55;
+      font-size: 1.08rem;
+      max-width: 58rem;
+    }
+
+    li { margin: 0.35rem 0; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      max-width: 64rem;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+    }
+
+    .card strong { color: var(--accent); display: block; margin-bottom: 0.35rem; }
+
+    table {
+      border-collapse: collapse;
+      width: min(100%, 58rem);
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 0.55rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th { background: #243040; color: var(--accent); }
+
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    pre {
+      background: var(--code);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      overflow: auto;
+      font-size: 0.92rem;
+      line-height: 1.45;
+      max-width: 62rem;
+      white-space: pre-wrap;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #243040;
+      color: var(--accent-2);
+      border: 1px solid #335;
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.85rem;
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .check { color: var(--accent-2); }
+    .warn { color: var(--warn); }
+
+    .footer {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.7rem 1.4rem;
+      background: rgba(15, 20, 25, 0.92);
+      border-top: 1px solid var(--line);
+      font-size: 0.9rem;
+      color: var(--muted);
+      z-index: 20;
+    }
+
+    .footer button {
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .footer button:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hint { margin-top: 1rem; color: var(--muted); font-size: 0.95rem; }
+
+    .tree { line-height: 1.4; }
+
+    @media (max-width: 800px) {
+      .slide { padding: 2rem 1.2rem 4.5rem; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck">
+
+    <!-- 0 -->
+    <section class="slide active">
+      <div>
+        <span class="tag">Tâche finale</span>
+        <span class="tag">python -m pymart.cli</span>
+      </div>
+      <h1>PyMart</h1>
+      <p class="subtitle">Back-office CLI — import, commandes, rapports datés</p>
+      <ul>
+        <li>Package Python multi-modules (<code>pymart/</code>)</li>
+        <li>Aligné sur la consigne <code>tache_final.md</code></li>
+        <li>Stdlib + CLI runnable</li>
+      </ul>
+    </section>
+
+    <!-- 1 -->
+    <section class="slide">
+      <h2>Plan</h2>
+      <ol>
+        <li>Contexte &amp; problème</li>
+        <li>Exigences du brief</li>
+        <li>Architecture package</li>
+        <li>OOP (héritage &amp; polymorphisme)</li>
+        <li>Import / nettoyage string-list</li>
+        <li>Exceptions</li>
+        <li>Generators + filesystem + datetime</li>
+        <li>CLI, rapports, démo</li>
+        <li>Checklist / grille</li>
+      </ol>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide">
+      <h2>1. Contexte métier</h2>
+      <div class="grid-2">
+        <div class="card">
+          <strong>PyMart</strong>
+          Retail multi-catégories. Le personnel exporte des extracts POS en fichiers texte.
+        </div>
+        <div class="card">
+          <strong>Besoin managers</strong>
+          Imports fiables, commandes traçables, rapports daily / monthly archivables et reproductibles.
+        </div>
+      </div>
+      <h3>Problème</h3>
+      <ul>
+        <li>Données sales : espaces, casse, colonnes manquantes, nombres / dates invalides</li>
+        <li>Sans validation → crash ou rapports faux</li>
+      </ul>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide">
+      <h2>2. Exigences (tache_final.md)</h2>
+      <table>
+        <thead>
+          <tr><th>Thème</th><th>Attendu</th><th>Dans PyMart</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CLI</td><td>import, orders, reports, erreurs claires</td><td><code>pymart/cli.py</code></td></tr>
+          <tr><td>Import</td><td>string/list cleaning</td><td><code>io/parsers.py</code></td></tr>
+          <tr><td>Exceptions</td><td>≥ 2 custom</td><td><code>exceptions.py</code></td></tr>
+          <tr><td>OOP</td><td>héritage + polymorphisme</td><td><code>models/</code></td></tr>
+          <tr><td>Package</td><td>modules séparés</td><td><code>pymart/</code></td></tr>
+          <tr><td>Generators / FS</td><td>yield + archives disque</td><td>store + reports</td></tr>
+          <tr><td>datetime</td><td>≥ 2 usages</td><td>writers + parse dates</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide">
+      <h2>3. Architecture</h2>
+      <pre class="tree">tache_finale/
+├── data/                  # products, customers, orders
+├── pymart/
+│   ├── __main__.py        # python -m pymart
+│   ├── cli.py             # argparse
+│   ├── exceptions.py
+│   ├── models/            # Product, Customer, Order...
+│   ├── io/parsers.py      # streaming + cleaning
+│   ├── services/store.py  # import, stock, JSON
+│   └── reports/writers.py # daily / monthly / stock
+├── reports/               # sortie archivée
+├── tests/
+└── preuves/</pre>
+      <p class="hint">Séparation des concerns : CLI mince → services → models → I/O.</p>
+    </section>
+
+    <!-- 5 -->
+    <section class="slide">
+      <h2>Flux bout en bout</h2>
+      <pre>data/*.txt
+    ↓  iter_text_rows()  (generator)
+io/parsers  →  strip / split / validate
+    ↓
+services/Store  →  products / customers / orders
+    ↓
+.pymart_store.json   (état entre commandes CLI)
+    ↓
+reports/writers  →  reports/daily/...  &amp;  reports/monthly/...</pre>
+      <p class="hint"><code>Store</code> = représentation interne exigée. Le JSON = persistence CLI (choix d’implémentation).</p>
+    </section>
+
+    <!-- 6 -->
+    <section class="slide">
+      <h2>4. OOP — domaine</h2>
+      <div class="grid-2">
+        <div class="card">
+          <strong>Classes minimales</strong>
+          <ul>
+            <li><code>Product</code></li>
+            <li><code>Customer</code></li>
+            <li><code>Order</code> + <code>OrderLine</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Héritage</strong>
+          <pre style="margin-top:0.5rem">Product
+ ├── PerishableProduct
+ └── ElectronicProduct</pre>
+        </div>
+      </div>
+      <h3>Polymorphisme</h3>
+      <pre>for product in store.products.values():
+    print(product.describe())  # base / expiry / warranty</pre>
+      <p class="hint">Override de <code>describe()</code> utilisé par CLI et rapports — sans <code>if isinstance</code> dans la boucle.</p>
+    </section>
+
+    <!-- 7 -->
+    <section class="slide">
+      <h2>5. Import + string/list</h2>
+      <p class="subtitle">Fichiers CSV-like séparés par <code>|</code> — un fichier par entité</p>
+      <ul>
+        <li><code>split("|")</code>, <code>strip()</code>, ignore lignes vides / <code>#</code> / header</li>
+        <li><code>" ".join(name.split()).title()</code> — espaces multiples</li>
+        <li><code>replace("$","")</code>, <code>.upper()</code> / <code>.lower()</code></li>
+        <li>Colonnes manquantes → <code>RecordFormatError</code></li>
+        <li>Nombres invalides / négatifs → <code>DataValidationError</code></li>
+      </ul>
+      <pre># pymart/io/parsers.py
+line = raw.strip()
+fields = [part.strip() for part in line.split("|")]
+...
+"sku": sku.upper(),
+"name": " ".join(name.split()).title()</pre>
+    </section>
+
+    <!-- 8 -->
+    <section class="slide">
+      <h2>6. Exceptions custom</h2>
+      <pre>PyMartError
+├── DataValidationError      # règles métier + file/line
+├── RecordFormatError        # colonnes / parse
+├── UnknownProductError
+├── DuplicateIdError
+├── InsufficientStockError
+└── InvalidDiscountError</pre>
+      <ul>
+        <li>Messages actionnables : <code>[file=data/orders.txt, line=7] ...</code></li>
+        <li>CLI : <code>try/except</code> → message stderr + code retour, <strong>pas de crash</strong></li>
+        <li>Import résilient : reject ligne + continuer</li>
+      </ul>
+    </section>
+
+    <!-- 9 -->
+    <section class="slide">
+      <h2>7. Generators + filesystem</h2>
+      <div class="grid-2">
+        <div class="card">
+          <strong>Generators</strong>
+          <ul>
+            <li><code>iter_text_rows</code> → yield ligne</li>
+            <li><code>iter_orders_for_date</code></li>
+            <li><code>iter_orders_for_month</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Filesystem</strong>
+          <ul>
+            <li><code>mkdir(parents=True, exist_ok=True)</code></li>
+            <li>Écriture <code>.txt</code> sur disque</li>
+            <li>Archive :
+              <code>daily/YYYY-MM-DD/</code><br/>
+              <code>monthly/YYYY-MM/</code>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="slide">
+      <h2>datetime / calendar (≥ 2)</h2>
+      <table>
+        <thead><tr><th>Usage</th><th>Où</th></tr></thead>
+        <tbody>
+          <tr><td>Filename daily daté</td><td><code>daily_sales_2026-06-30.txt</code></td></tr>
+          <tr><td>Monthly + <code>calendar.monthrange</code> / calendrier</td><td><code>writers.py</code></td></tr>
+          <tr><td>Parse dates input (plusieurs formats)</td><td><code>parse_order_date</code></td></tr>
+          <tr><td>Date argument CLI + next review (+30j)</td><td><code>cli.py</code> / daily report</td></tr>
+          <tr><td>Timestamps dans rapports</td><td><code>Generated at: ...</code></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 11 -->
+    <section class="slide">
+      <h2>8. CLI — commandes</h2>
+      <pre>python -m pymart.cli --help
+
+python -m pymart.cli import \
+  --products data/products.txt \
+  --customers data/customers.txt \
+  --orders data/orders.txt
+
+python -m pymart.cli order list
+python -m pymart.cli order create --id 2002 --customer C1001 --sku NB-001 --qty 1
+
+python -m pymart.cli report --type daily --date 2026-06-30 --out reports/
+python -m pymart.cli report --type monthly --month 2026-06 --out reports/</pre>
+      <p class="hint">Aussi : <code>python -m pymart</code> · option <code>--store</code></p>
+    </section>
+
+    <!-- 12 -->
+    <section class="slide">
+      <h2>Rapports (outputs minimum)</h2>
+      <ul>
+        <li><span class="check">✓</span> Daily sales → <code>reports/daily/2026-06-30/daily_sales_....txt</code></li>
+        <li><span class="check">✓</span> Monthly summary → top produits / clients, période, calendrier</li>
+        <li><span class="check">✓</span> Stock levels → <code>stock_levels_YYYY-MM.txt</code></li>
+      </ul>
+      <h3>Contenu daily</h3>
+      <ul>
+        <li>Report date, Generated at, Next review date</li>
+        <li>Orders / Revenue + détail lignes</li>
+        <li>Snapshot catalogue via <code>describe()</code> (polymorphisme)</li>
+      </ul>
+      <p class="hint warn">Important : importer products + customers + orders avant de générer un rapport, sinon Orders: 0.</p>
+    </section>
+
+    <!-- 13 -->
+    <section class="slide">
+      <h2>Démo — script</h2>
+      <pre>rm -f .pymart_store.json
+
+python -m pymart.cli import \
+  --products data/products.txt \
+  --customers data/customers.txt \
+  --orders data/orders.txt
+
+python -m pymart.cli status
+python -m pymart.cli report --type daily --date 2026-06-30 --out reports/
+python -m pymart.cli report --type monthly --month 2026-06 --out reports/
+
+# erreur gérée (pas de crash)
+python -m pymart.cli order create --id 2002 --customer C1001 --sku NOPE --qty 1</pre>
+      <p class="hint">Ou : <code>bash RUN.sh</code> · preuves dans <code>preuves/</code></p>
+    </section>
+
+    <!-- 14 -->
+    <section class="slide">
+      <h2>Grille de notation</h2>
+      <table>
+        <thead><tr><th>%</th><th>Critère</th><th>Preuve</th></tr></thead>
+        <tbody>
+          <tr><td>35</td><td>Fonctionnalité</td><td>CLI E2E + rapports disque</td></tr>
+          <tr><td>20</td><td>Qualité / packaging</td><td>modules séparés, PEP8</td></tr>
+          <tr><td>20</td><td>OOP</td><td>héritage + <code>describe()</code></td></tr>
+          <tr><td>10</td><td>Erreurs</td><td>exceptions + messages file/line</td></tr>
+          <tr><td>10</td><td>Stdlib</td><td>pathlib, datetime, calendar, yield</td></tr>
+          <tr><td>5</td><td>Doc / demo</td><td>README + preuves + cette diapo</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 15 -->
+    <section class="slide">
+      <h2>Checklist soumission</h2>
+      <ul>
+        <li><span class="check">✓</span> Package runnable multi-modules</li>
+        <li><span class="check">✓</span> Structure claire (models / io / services / cli / reports)</li>
+        <li><span class="check">✓</span> ≥ 1 generator utilisé</li>
+        <li><span class="check">✓</span> ≥ 2 exceptions custom levées</li>
+        <li><span class="check">✓</span> ≥ 2 rapports datés écrits sur disque</li>
+        <li><span class="check">✓</span> Dossier reports créé automatiquement</li>
+        <li><span class="check">✓</span> <code>requirements.txt</code> (pytest…)</li>
+        <li><span class="check">✓</span> Preuves : <code>preuves/PROCEDURE_PREUVES.html</code></li>
+      </ul>
+    </section>
+
+    <!-- 16 -->
+    <section class="slide">
+      <h2>Conclusion</h2>
+      <ol>
+        <li>Importe et nettoie les extracts POS</li>
+        <li>Modélise le domaine en OOP (héritage + polymorphisme)</li>
+        <li>Gère commandes / stock avec exceptions typées</li>
+        <li>Produit des rapports daily &amp; monthly archivés</li>
+      </ol>
+      <p class="subtitle" style="margin-top:1.5rem">Aligné sur <code>tache_final.md</code> — prêt pour questions.</p>
+      <pre>python -m pip install -r requirements.txt
+python -m pymart.cli --help</pre>
+    </section>
+
+  </div>
+
+  <div class="footer">
+    <div>
+      <button type="button" id="prev">← Préc.</button>
+      <button type="button" id="next">Suiv. →</button>
+      <span style="margin-left:0.8rem">← → / Espace</span>
+    </div>
+    <div id="counter">1 / 1</div>
+  </div>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    let i = 0;
+
+    function show(n) {
+      i = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, idx) => s.classList.toggle("active", idx === i));
+      document.getElementById("counter").textContent = `${i + 1} / ${slides.length}`;
+    }
+
+    document.getElementById("prev").onclick = () => show(i - 1);
+    document.getElementById("next").onclick = () => show(i + 1);
+
+    document.addEventListener("keydown", (e) => {
+      if (["ArrowRight", "PageDown", " ", "Enter"].includes(e.key)) {
+        e.preventDefault();
+        show(i + 1);
+      } else if (["ArrowLeft", "PageUp", "Backspace"].includes(e.key)) {
+        e.preventDefault();
+        show(i - 1);
+      } else if (e.key === "Home") show(0);
+      else if (e.key === "End") show(slides.length - 1);
+    });
+
+    show(0);
+  </script>
+</body>
+</html>
