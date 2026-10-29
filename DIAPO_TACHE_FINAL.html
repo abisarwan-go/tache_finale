@@ -494,7 +494,7 @@ python -m pymart.cli --help</pre>
     <div>
       <button type="button" id="prev">← Préc.</button>
       <button type="button" id="next">Suiv. →</button>
-      <span style="margin-left:0.8rem">← → / Espace / clic</span>
+      <span style="margin-left:0.8rem">← → / Espace</span>
     </div>
     <div id="counter">1 / 1</div>
   </div>
@@ -521,12 +521,6 @@ python -m pymart.cli --help</pre>
         show(i - 1);
       } else if (e.key === "Home") show(0);
       else if (e.key === "End") show(slides.length - 1);
-    });
-
-    document.getElementById("deck").addEventListener("click", (e) => {
-      if (e.target.closest("button, a, pre, code")) return;
-      const mid = window.innerWidth / 2;
-      show(e.clientX < mid ? i - 1 : i + 1);
     });
 
     show(0);
