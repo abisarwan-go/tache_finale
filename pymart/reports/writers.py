@@ -12,9 +12,7 @@ from pymart.services.store import Store
 
 def _ensure_archive_dirs(out_dir: Path, day: date) -> Path:
     day_dir = out_dir / "daily" / day.strftime("%Y-%m-%d")
-    month_dir = out_dir / "monthly" / day.strftime("%Y-%m")
     day_dir.mkdir(parents=True, exist_ok=True)
-    month_dir.mkdir(parents=True, exist_ok=True)
     return day_dir
 
 
