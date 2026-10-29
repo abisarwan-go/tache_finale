@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PyMart — Procedure &amp; Evidence Pack</title>
+  <style>
+    :root {
+      --ink: #1a1f2e;
+      --muted: #5a6478;
+      --line: #d8dee9;
+      --panel: #0f172a;
+      --green: #34d399;
+      --accent: #2563eb;
+      --paper: #f8fafc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.5;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    header {
+      border-bottom: 3px solid var(--ink);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    h1 { margin: 0 0 0.35rem; font-size: 1.75rem; letter-spacing: -0.02em; }
+    .meta { color: var(--muted); font-size: 0.95rem; }
+    h2 {
+      margin: 2.25rem 0 0.75rem;
+      font-size: 1.25rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 0.65rem;
+    }
+    h3 { margin: 1.25rem 0 0.4rem; font-size: 1.05rem; }
+    p, li { font-size: 0.98rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.75rem 0 1rem;
+      font-size: 0.92rem;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #eef2ff; }
+    .shot {
+      margin: 0.85rem 0 1.25rem;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #1e293b;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+    }
+    .shot-bar {
+      background: #1e293b;
+      color: #94a3b8;
+      font-size: 0.75rem;
+      padding: 0.45rem 0.85rem;
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .dot.r { background: #f87171; }
+    .dot.y { background: #fbbf24; }
+    .dot.g { background: #34d399; }
+    .shot pre {
+      margin: 0;
+      background: var(--panel);
+      color: #e2e8f0;
+      padding: 1rem 1.1rem;
+      overflow-x: auto;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .shot pre .ok { color: var(--green); }
+    .cmd {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: ui-monospace, Menlo, monospace;
+      font-size: 0.85rem;
+      margin: 0.5rem 0 0.85rem;
+      white-space: pre-wrap;
+    }
+    .note {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: #1e3a8a;
+      font-size: 0.92rem;
+    }
+    .checklist { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 0.5rem 1rem; }
+    footer { margin-top: 3rem; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+    @media print {
+      body { background: #fff; }
+      .wrap { max-width: none; padding: 0; }
+      .shot { box-shadow: none; break-inside: avoid; }
+      h2 { break-after: avoid; }
+      .no-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>PyMart — Procedure &amp; Evidence Pack</h1>
+      <p class="meta">
+        Final deliverable · CLI run · successful import · dated reports · handled validation errors<br />
+        Open this file in a browser → <strong>Print → Save as PDF</strong> for submission.
+      </p>
+      <p class="note no-print">
+        Tip: use Chrome/Safari → Print → Destination “Save as PDF”, margins “Default”, background graphics ON
+        so the terminal “screenshots” keep their dark theme.
+      </p>
+    </header>
+
+    <h2>0. Setup</h2>
+    <div class="cmd">cd mini-projet
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+rm -f .pymart_store.json</div>
+
+    <h2>Figure 1 — How to run the CLI</h2>
+    <h3>Step</h3>
+    <div class="cmd">python -m pymart.cli --help</div>
+    <h3>Screenshot / terminal capture</h3>
+    <div class="shot">
+      <div class="shot-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span>Terminal — python -m pymart.cli --help</span>
+      </div>
+      <pre>usage: python -m pymart.cli [-h] [--store STORE]
+                            {import,order,report,status} ...
+
+PyMart back-office toolkit
+
+positional arguments:
+  {import,order,report,status}
+    import              Import products/customers/orders
+    order               Create or list orders
+    report              Generate dated reports
+    status              Show store summary (products/customers/orders)
+
+options:
+  -h, --help            show this help message and exit
+  --store STORE         Path to persisted store JSON (default:
+                        .pymart_store.json)</pre>
+    </div>
+    <p class="meta">Source: <code>preuves/captures/01_cli_help.txt</code></p>
+
+    <h2>Figure 2 — Successful import</h2>
+    <h3>Step</h3>
+    <div class="cmd">python -m pymart.cli import \
+  --products data/products.txt \
+  --customers data/customers.txt \
+  --orders data/orders.txt</div>
+    <h3>Screenshot / terminal capture</h3>
+    <div class="shot">
+      <div class="shot-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span>Terminal — import</span>
+      </div>
+      <pre><span class="ok">Products imported=5 rejected=2
+Customers imported=3 rejected=2
+Order lines imported=5 rejected=3</span>
+Recent validation messages:
+  - [file=data/products.txt, line=7] invalid price/quantity: 'abc', '10'
+  - [file=data/products.txt, line=8] price and quantity must be non-negative
+  - [file=data/customers.txt, line=5] customer_id, name, and email(@) are required
+  - [file=data/customers.txt, line=6] customer_id, name, and email(@) are required
+  - [file=data/orders.txt, line=7] Unknown product SKU 'UNKNOWN'.
+  - [file=data/orders.txt, line=8] order quantity must be &gt; 0
+  - [file=data/orders.txt, line=9] unknown customer_id 'C9999'</pre>
+    </div>
+    <p>Valid rows are kept; invalid rows are rejected with file/line context. Store status after import:</p>
+    <div class="shot">
+      <div class="shot-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span>Terminal — status</span>
+      </div>
+      <pre>PyMart store status
+  products : 5
+  customers: 3
+  orders   : 4
+  import errors logged: 7
+  catalog:
+    - NB-001 | Notebook | $3.49
+    - PN-101 | Pen Pack | $5.99
+    - BK-550 | Backpack | $39.95
+    - ML-001 | Fresh Milk | $3.49 | expires: 2027-08-01
+    - HP-200 | Headphones | $79.99 | warranty: 24 months</pre>
+    </div>
+
+    <h2>Figure 3 — Generated report #1 (daily)</h2>
+    <div class="cmd">python -m pymart.cli report --type daily --date 2026-06-30 --out reports/</div>
+    <div class="shot">
+      <div class="shot-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span>Terminal — report daily</span>
+      </div>
+      <pre><span class="ok">Wrote daily report: reports/daily/2026-06-30/daily_sales_2026-06-30.txt</span></pre>
+    </div>
+    <h3>Report file content</h3>
+    <p class="meta">File: <code>reports/daily/2026-06-30/daily_sales_2026-06-30.txt</code>
+      · copy: <code>preuves/rapports/daily_sales_2026-06-30.txt</code></p>
+    <div class="shot">
+      <div class="shot-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span>File — daily_sales_2026-06-30.txt</span>
+      </div>
+      <pre>PyMart Daily Sales Summary
+==========================
+Report date: 2026-06-30
+Generated at: 2026-10-28T23:05:13
+Next review date: 2026-07-30
+Orders: 2
+Revenue: $52.92
+
+Order details:
+  - Order 1001 | customer=C1001 | date=2026-06-30 | lines=2 | total=$12.97 | status=imported
+      • NB-001 x2 @ $3.49 = $6.98
+      • PN-101 x1 @ $5.99 = $5.99
+  - Order 1002 | customer=C1002 | date=2026-06-30 | lines=1 | total=$39.95 | status=imported
+      • BK-550 x1 @ $39.95 = $39.95
+
+Catalog snapshot (polymorphic describe):
+  - NB-001 | Notebook | $3.49
+  - PN-101 | Pen Pack | $5.99
+  - BK-550 | Backpack | $39.95
+  - ML-001 | Fresh Milk | $3.49 | expires: 2027-08-01
+  - HP-200 | Headphones | $79.99 | warranty: 24 months</pre>
+    </div>
+
+    <h2>Figure 4 — Generated report #2 (monthly + stock)</h2>
+    <div class="cmd">python -m pymart.cli report --type monthly --month 2026-06 --out reports/</div>
+    <div class="shot">
+      <div class="shot-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span>Terminal — report monthly</span>
+      </div>
+      <pre><span class="ok">Wrote monthly report: reports/monthly/2026-06/monthly_summary_2026-06.txt
+Wrote stock report: reports/monthly/2026-06/stock_levels_2026-06.txt</span></pre>
+    </div>
+    <h3>Monthly summary</h3>
+    <div class="shot">
+      <div class="shot-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span>File — monthly_summary_2026-06.txt</span>
+      </div>
+      <pre>PyMart Monthly Summary
+======================
+Period: 2026-06 (days 1–30)
+Generated at: 2026-10-28T23:05:13
+Leap year: False
+Orders: 4
+Revenue: $139.89
+
+Top-selling products:
+  - ML-001: 2 units
+  - NB-001: 2 units
+  - HP-200: 1 units
+  - PN-101: 1 units
+  - BK-550: 1 units
+
+Top customers by spend:
+  - Ava Chen (C1003): $79.99
+  - Miguel Rivera (C1002): $39.95
+  - Aisha Khan (C1001): $19.95</pre>
+    </div>
+    <h3>Stock levels (third dated report file)</h3>
+    <div class="shot">
+      <div class="shot-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span>File — stock_levels_2026-06.txt</span>
+      </div>
+      <pre>PyMart Stock Level Report
+=========================
+As of period: 2026-06
+Generated at: 2026-10-28T23:05:13
+
+BK-550       qty=7     price=$39.95    BK-550 | Backpack | $39.95
+HP-200       qty=11    price=$79.99    HP-200 | Headphones | $79.99 | warranty: 24 months
+ML-001       qty=22    price=$3.49     ML-001 | Fresh Milk | $3.49 | expires: 2027-08-01
+NB-001       qty=118   price=$3.49     NB-001 | Notebook | $3.49
+PN-101       qty=44    price=$5.99     PN-101 | Pen Pack | $5.99</pre>
+    </div>
+
+    <h2>Figure 5 — Handled validation errors</h2>
+    <p>Import already shows soft rejects (Figure 2). Below: a hard domain error on order create.</p>
+    <div class="cmd">python -m pymart.cli order create --id 2002 --customer C1001 --sku NOPE --qty 1</div>
+    <div class="shot">
+      <div class="shot-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span>Terminal — order create (invalid SKU)</span>
+      </div>
+      <pre>Order error: Unknown product SKU 'NOPE'.
+exit:1</pre>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Source</th><th>Handled error</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>products.txt L7</td><td>price = <code>abc</code> (not a number)</td></tr>
+        <tr><td>products.txt L8</td><td>negative price</td></tr>
+        <tr><td>customers.txt L5–6</td><td>invalid email / empty name</td></tr>
+        <tr><td>orders.txt L7–9</td><td>unknown SKU, qty ≤ 0, unknown customer</td></tr>
+        <tr><td>CLI order create</td><td>unknown SKU → message + exit code 1 (no traceback)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Assignment checklist</h2>
+    <div class="checklist">
+      <table>
+        <thead><tr><th>Requirement</th><th>Evidence</th></tr></thead>
+        <tbody>
+          <tr><td>How to run the CLI</td><td>Figure 1</td></tr>
+          <tr><td>Successful import</td><td>Figure 2</td></tr>
+          <tr><td>≥ 2 generated report files</td><td>Figures 3 &amp; 4 (daily + monthly/stock)</td></tr>
+          <tr><td>Handled validation errors</td><td>Figures 2 &amp; 5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      PyMart ESTIAM mini-projet · evidence regenerated via <code>preuves/regenerate_captures.sh</code>
+    </footer>
+  </div>
+</body>
+</html>

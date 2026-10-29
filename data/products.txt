@@ -1,0 +1,8 @@
+sku|name|price|quantity|kind|extra
+NB-001| notebook |3.49|120|standard|
+PN-101|PEN PACK|5.99|45|standard|
+BK-550|Backpack|39.95|8|standard|
+ML-001|Fresh Milk|3.49|24|perishable|2027-08-01
+HP-200|Headphones|79.99|12|electronic|24
+BAD|Broken|abc|10|standard|
+SKU-NEG|Bad Price|-1|5|standard|

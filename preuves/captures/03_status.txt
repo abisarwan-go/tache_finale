@@ -1,0 +1,11 @@
+PyMart store status
+  products : 5
+  customers: 3
+  orders   : 4
+  import errors logged: 7
+  catalog:
+    - NB-001 | Notebook | $3.49
+    - PN-101 | Pen Pack | $5.99
+    - BK-550 | Backpack | $39.95
+    - ML-001 | Fresh Milk | $3.49 | expires: 2027-08-01
+    - HP-200 | Headphones | $79.99 | warranty: 24 months

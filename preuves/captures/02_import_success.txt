@@ -1,0 +1,11 @@
+Products imported=5 rejected=2
+Customers imported=3 rejected=2
+Order lines imported=5 rejected=3
+Recent validation messages:
+  - [file=data/products.txt, line=7] invalid price/quantity: 'abc', '10'
+  - [file=data/products.txt, line=8] price and quantity must be non-negative
+  - [file=data/customers.txt, line=5] customer_id, name, and email(@) are required
+  - [file=data/customers.txt, line=6] customer_id, name, and email(@) are required
+  - [file=data/orders.txt, line=7] Unknown product SKU 'UNKNOWN'.
+  - [file=data/orders.txt, line=8] order quantity must be > 0
+  - [file=data/orders.txt, line=9] unknown customer_id 'C9999'

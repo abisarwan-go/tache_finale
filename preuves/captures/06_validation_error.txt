@@ -1,0 +1,2 @@
+Order error: Unknown product SKU 'NOPE'.
+exit:1

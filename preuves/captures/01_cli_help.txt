@@ -1,0 +1,16 @@
+usage: python -m pymart.cli [-h] [--store STORE]
+                            {import,order,report,status} ...
+
+PyMart back-office toolkit
+
+positional arguments:
+  {import,order,report,status}
+    import              Import products/customers/orders
+    order               Create or list orders
+    report              Generate dated reports
+    status              Show store summary (products/customers/orders)
+
+options:
+  -h, --help            show this help message and exit
+  --store STORE         Path to persisted store JSON (default:
+                        .pymart_store.json)

@@ -1,0 +1,10 @@
+PyMart Stock Level Report
+=========================
+As of period: 2026-06
+Generated at: 2026-10-28T23:05:13
+
+BK-550       qty=7     price=$39.95    BK-550 | Backpack | $39.95
+HP-200       qty=11    price=$79.99    HP-200 | Headphones | $79.99 | warranty: 24 months
+ML-001       qty=22    price=$3.49     ML-001 | Fresh Milk | $3.49 | expires: 2027-08-01
+NB-001       qty=118   price=$3.49     NB-001 | Notebook | $3.49
+PN-101       qty=44    price=$5.99     PN-101 | Pen Pack | $5.99

@@ -1,0 +1,21 @@
+PyMart Daily Sales Summary
+==========================
+Report date: 2026-06-30
+Generated at: 2026-10-28T23:05:13
+Next review date: 2026-07-30
+Orders: 2
+Revenue: $52.92
+
+Order details:
+  - Order 1001 | customer=C1001 | date=2026-06-30 | lines=2 | total=$12.97 | status=imported
+      • NB-001 x2 @ $3.49 = $6.98
+      • PN-101 x1 @ $5.99 = $5.99
+  - Order 1002 | customer=C1002 | date=2026-06-30 | lines=1 | total=$39.95 | status=imported
+      • BK-550 x1 @ $39.95 = $39.95
+
+Catalog snapshot (polymorphic describe):
+  - NB-001 | Notebook | $3.49
+  - PN-101 | Pen Pack | $5.99
+  - BK-550 | Backpack | $39.95
+  - ML-001 | Fresh Milk | $3.49 | expires: 2027-08-01
+  - HP-200 | Headphones | $79.99 | warranty: 24 months

@@ -1,0 +1,2 @@
+Wrote monthly report: reports/monthly/2026-06/monthly_summary_2026-06.txt
+Wrote stock report: reports/monthly/2026-06/stock_levels_2026-06.txt
